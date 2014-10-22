@@ -6,6 +6,6 @@ reset:
 	echo "Not implemented"
 
 run:
-	echo "Not implemented"
+	foreman start
 
 .PHONY: install reset run
