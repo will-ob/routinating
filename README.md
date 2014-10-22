@@ -20,7 +20,7 @@ Containers are auto-discovered as they spin up and removed from rotation when th
  - [h.a. proxy](http://www.haproxy.org/) - Reverse proxy that gathers requests from port 80.
  - [consul](http://www.consul.io/) - Maintains a directory of services.
  - [registrator](https://github.com/progrium/registrator) - Detects container life-cycle events and updates the consul registry.
- - [consul-haproxy](https://github.com/hashicorp/consul-haproxy) - Detects changes in consul's directory of services and reconfigures haproxy.
+ - [consul-template](https://github.com/hashicorp/consul-template) - Detects changes in consul's directory of services and reconfigures haproxy.
 
 Install
 -----------------

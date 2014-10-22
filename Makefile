@@ -1,5 +1,11 @@
 
 install:
-	echo "not implemented"
+	./scripts/install-deps
 
-.PHONY: install
+reset:
+	echo "Not implemented"
+
+run:
+	echo "Not implemented"
+
+.PHONY: install reset run

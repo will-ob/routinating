@@ -1,18 +1,26 @@
 #!/usr/bin/env bash
 
-sudo su -
-apt-get update
+sudo apt-get update
 
 project_root="$(git rev-parse --show-toplevel)"
 consul_version="0.4.1"
 
+# go (consul-template requires 1.2)
+sudo apt-get -y install bzr
+cd $GOPATH
+go get launchpad.net/godeb
+$GOPATH/bin/godeb --help
+sudo apt-get -y remove golang
+sudo apt-get -y autoremove
+$GOPATH/bin/godeb install
+
 
 # haproxy
-apt-get -y install haproxy
+sudo apt-get -y install haproxy
 
 
 # docker
-apt-get -y install docker.io
+sudo apt-get -y install docker.io
 ln -sf /usr/bin/docker.io /usr/local/bin/docker
 sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
 
@@ -23,22 +31,19 @@ wget https://dl.bintray.com/mitchellh/consul/"$consul_version"_linux_amd64.zip
 unzip "$consul_version"_linux_amd64.zip
 mkdir -p bin
 mv consul bin/
-rm $consul_version_linux_amd64.zip
+rm "$consul_version"_linux_amd64.zip
 
 
 # registrator
-docker pull progrium/registrator
+sudo docker pull progrium/registrator
 
-
-#   no more sudo
-exit
-
-
-# consul-haproxy
+# consul-template
 cd $project_root/bin
 git clone https://github.com/hashicorp/consul-template.git
-cd consul-template
+mv consul-template .consul-template
+cd .consul-template
 make
-ln -s $project_root/bin/consul-template/bin/consul-template $project_root/bin/consul-template
+ln -s $project_root/bin/.consul-template/bin/consul-template $project_root/bin/consul-template
 
+echo "\n\nBuild Successful"
 
