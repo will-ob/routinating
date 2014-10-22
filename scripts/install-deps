@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+sudo su -
+apt-get update
+
+project_root="$(git rev-parse --show-toplevel)"
+consul_version="0.4.1"
+
+
+# haproxy
+apt-get -y install haproxy
+
+
+# docker
+apt-get -y install docker.io
+ln -sf /usr/bin/docker.io /usr/local/bin/docker
+sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
+
+
+# consul
+cd $project_root
+wget https://dl.bintray.com/mitchellh/consul/"$consul_version"_linux_amd64.zip
+unzip "$consul_version"_linux_amd64.zip
+mkdir -p bin
+mv consul bin/
+rm $consul_version_linux_amd64.zip
+
+
+# registrator
+docker pull progrium/registrator
+
+
+#   no more sudo
+exit
+
+
+# consul-haproxy
+cd $project_root/bin
+git clone https://github.com/hashicorp/consul-template.git
+cd consul-template
+make
+ln -s $project_root/bin/consul-template/bin/consul-template $project_root/bin/consul-template
+
+
