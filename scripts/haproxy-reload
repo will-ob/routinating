@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+haproxy -f ./build/haproxy.cfg -p ./pids/haproxy.pid -sf $(cat ./pids/haproxy.pid)
+
