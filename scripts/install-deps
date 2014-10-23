@@ -53,5 +53,8 @@ cd .consul-template
 make
 ln -s $project_root/bin/.consul-template/bin/consul-template $project_root/bin/consul-template
 
-echo "\n\nBuild Successful"
+# Default haproxy config
+cp haproxy.cfg.default build/haproxy.cfg
+
+echo -e "\n\nBuild Successful"
 
