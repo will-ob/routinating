@@ -2,3 +2,4 @@ bin/*
 pids/*
 build/*
 assets/*
+libpeerconnection.log

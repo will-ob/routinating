@@ -12,8 +12,13 @@ An unreasonably complicated way to get my http's to where where they need to go.
 Overview
 ------------
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/will-ob/routinating/master/routinating.png" />
+</p>
+
+
 HTTP traffic accepted on port 80. Traffic distributed to appropriate backend docker containers.
-Containers are auto-discovered as they spin up and removed from rotation when they are spun down.
+Containers are auto-discovered as they spin up and removed from rotation as they spin down.
 
 ### Constituents
 
